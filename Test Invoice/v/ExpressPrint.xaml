@@ -1,0 +1,68 @@
+﻿<Page x:Class="Test_Invoice.v.ExpressPrint"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Test_Invoice.v"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="1000"
+      Title="ExpressPrint">
+
+    <Grid x:Name="BodyG">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="58"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="{Binding ElementName=expBorder, Path=Width}"/>
+        </Grid.ColumnDefinitions>
+
+        <ToolBar FocusManager.IsFocusScope="False" Grid.ColumnSpan="2">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFEEEEEE"/>
+                    <GradientStop Color="#FFEAEAEA" Offset="0.5"/>
+                    <GradientStop Color="#FFAEAEAE" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button BorderBrush="Black" Command="{Binding QuitCMD}" Content="返回" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="返回上级页面" Width="39"/>
+
+            <TextBlock Text=" 搜索:" VerticalAlignment="Center"/>
+            <TextBox Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,1" Height="26" InputMethod.IsInputMethodEnabled="False" Margin="2" Text="{Binding 搜索,UpdateSourceTrigger=PropertyChanged}" Width="128"/>
+            <TextBlock Text=" 快递:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="expCB" BorderBrush="Black" BorderThickness="0,0,0,1" DisplayMemberPath="名称" ItemsSource="{Binding 显示快递列表}" Height="26" SelectedItem="{Binding 选中快递}" Width="128" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFEEEEEE"/>
+                        <GradientStop Color="#FFEAEAEA" Offset="0.5"/>
+                        <GradientStop Color="#FFCECECE" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
+            <Button BorderBrush="Black" Content="打印" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="添加新联系人" Width="39" Click="Button_Click"/>
+        </ToolBar>
+
+        
+        <ListView x:Name="DataLV" FontSize="12" Grid.Row="1" ItemsSource="{Binding 显示表}" SelectedItem="{Binding 选中项}" SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="联系人" DisplayMemberBinding="{Binding Path=名称}"/>
+                    <GridViewColumn Header="公司" DisplayMemberBinding="{Binding Path=显示公司}"/>
+                    <GridViewColumn Header="地址" DisplayMemberBinding="{Binding Path=地址}"/>
+                    <GridViewColumn Header="手机" DisplayMemberBinding="{Binding Path=手机}"/>
+                    <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=电话}"/>
+                    <GridViewColumn Header="传真" DisplayMemberBinding="{Binding Path=传真}"/>
+                    <GridViewColumn Header="备注" DisplayMemberBinding="{Binding Path=备注}"/>
+                    <GridViewColumn Header="默认快递" DisplayMemberBinding="{Binding Path=显示快递}"/>
+                    <GridViewColumn Header="简称" DisplayMemberBinding="{Binding Path=昵称}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <Border x:Name="expBorder"  BorderBrush="Red" BorderThickness="2" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" MinHeight="100" MinWidth="100">
+            <Grid x:Name="expGrid" DataContext="{Binding 选中项}" HorizontalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Page>

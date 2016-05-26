@@ -1,0 +1,206 @@
+﻿<Page x:Class="Test_Invoice.v.InvoiceEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Test_Invoice.v"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="1000"
+      Title="发货单编辑" KeyDown="Page_KeyDown">
+
+    <Grid x:Name="BodyG">
+        <ToolBar FocusManager.IsFocusScope="False" Height="96" VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFEAEAEA" Offset="0.5"/>
+                    <GradientStop Color="#FFAEAEAE" Offset="1"/>
+                    <GradientStop Color="#FFEEEEEE"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button BorderBrush="Black" Command="{Binding QuitCMD}" Content="返回" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="返回上级页面" Width="39"/>
+
+            <StackPanel VerticalAlignment="Center">
+                <StackPanel Margin="10,5" Orientation="Horizontal">
+                    <TextBlock Text="收货公司:" VerticalAlignment="Center"/>
+                    <TextBox x:Name="comNameTB" Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,1" InputMethod.IsInputMethodEnabled="False" MaxLength="60" MinWidth="280" Text="{Binding 公司名称,UpdateSourceTrigger=PropertyChanged}"
+                             GotFocus="comNameTB_GotFocus" LostFocus="SmartTB_LostFocusNotUpdate" PreviewKeyDown="SmartTB_PreviewKeyDown" TextChanged="SmartTB_TextChanged"/>
+
+                    <TextBlock Text="　收货人:" VerticalAlignment="Center"/>
+                    <TextBox Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,1" MaxLength="60" MinWidth="80" Text="{Binding 发货单.联系人}"
+                             GotFocus="conNameTB_GotFocus" LostFocus="SmartTB_LostFocusNotUpdate" PreviewKeyDown="SmartTB_PreviewKeyDown" TextChanged="SmartTB_TextChanged"/>
+                </StackPanel>
+                <StackPanel Margin="10,5" Orientation="Horizontal" >
+                    <TextBlock Text="备　注:　" VerticalAlignment="Center"/>
+                    <TextBox Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,1"  MaxLength="60" MinWidth="280" Text="{Binding 发货单.Comment}"/>
+                    <TextBlock x:Name="TooltipTB" Foreground="Red" Text="　请选择收货公司" VerticalAlignment="Center"/>
+                    <RadioButton x:Name="CashRB" Content="现金" GroupName="a" IsChecked="{Binding 已付款}" Margin="15,0" VerticalAlignment="Center"/>
+                    <RadioButton x:Name="CreditRB" Content="赊欠" GroupName="a" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Button BorderBrush="Black" Command="{Binding 打印CMD}" Content="保存并打印" Cursor="Hand" FontWeight="Bold" Height="39" Margin="20,0" ToolTip="打印后此发货单不能再编辑,发现错误只能作废" Width="100"/>
+            <Button BorderBrush="Black" Command="{Binding 保存CMD}" Content="保存" Cursor="Hand" Height="39" Margin="20,0" ToolTip="暂时保存,可在管理页面找到后继续编辑" Width="39" Visibility="Hidden"/>
+            <Button BorderBrush="Black" Command="{Binding 预览CMD}" Content="预览" Cursor="Hand" Height="39" Margin="20,0" ToolTip="预览打印效果" Width="39"/>
+        </ToolBar>
+
+        <StackPanel Margin="0,95,0,0">
+            <DataGrid x:Name="invoiceDG" AutoGenerateColumns="False" RowHeaderWidth="0" SelectionMode="Single" KeyUp="DataGrid_KeyUp" MouseUp="DataGrid_MouseUp">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="编号" Width="26*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding 编号}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox MaxLength="30" Text="{Binding 编号}" Loaded="TextBox_Loaded"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="名称" Width="58*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding 名称}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox MaxLength="60" Tag="名称" Text="{Binding 名称}" Loaded="TextBox_Loaded"
+                                         GotFocus="SmartTB_GotFocus" LostFocus="SmartTB_LostFocus" PreviewKeyDown="SmartTB_PreviewKeyDown" TextChanged="SmartTB_TextChanged"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="规格" Width="15*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding 规格}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox InputMethod.IsInputMethodEnabled="False" MaxLength="30" Tag="规格" Text="{Binding 规格}" Loaded="TextBox_Loaded"
+                                         GotFocus="SmartTB_GotFocus" LostFocus="SmartTB_LostFocus" PreviewKeyDown="SmartTB_PreviewKeyDown" TextChanged="SmartTB_TextChanged"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="颜色" Width="15*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding 颜色}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox MaxLength="30" Tag="颜色" Text="{Binding 颜色}" Loaded="TextBox_Loaded"
+                                         GotFocus="SmartTB_GotFocus" LostFocus="SmartTB_LostFocus" PreviewKeyDown="SmartTB_PreviewKeyDown" TextChanged="SmartTB_TextChanged"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="数量" Width="16*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding 编辑数量}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox InputMethod.IsInputMethodEnabled="False" MaxLength="15" Text="{Binding 编辑数量,Mode=TwoWay}" Loaded="TextBox_Loaded"
+                                         LostFocus="Decimal_LostFocus" PreviewKeyDown="Decimal_PreviewKeyDown"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="单位" Width="8*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding 单位}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox MaxLength="15" Tag="单位" Text="{Binding 单位}" Loaded="TextBox_Loaded"
+                                         GotFocus="SmartTB_GotFocus" LostFocus="SmartTB_LostFocus" PreviewKeyDown="SmartTB_PreviewKeyDown" TextChanged="SmartTB_TextChanged"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="单价" Width="16*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding 编辑单价}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox InputMethod.IsInputMethodEnabled="False" MaxLength="15" Text="{Binding 编辑单价,Mode=TwoWay}" Loaded="TextBox_Loaded"
+                                         LostFocus="Decimal_LostFocus" PreviewKeyDown="Decimal_PreviewKeyDown"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="金额" Width="18*" IsReadOnly="True" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <!--显示时的模板 禁止编辑 没写编辑模板-->
+                            <DataTemplate>
+                                <TextBox Background="{x:Null}" BorderThickness="0" IsReadOnly="True" Text="{Binding 显示金额, Mode=OneWay}" TextAlignment="Center" TextChanged="Money_TextChanged"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="备注" Width="20*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding 备注}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox MaxLength="30" Text="{Binding 备注}" Loaded="TextBox_Loaded"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="不打印的信息" Width="32*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Comment}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox MaxLength="120" Text="{Binding Comment}" Loaded="TextBox_Loaded"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="删" Width="26">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <!--显示时的模板 禁止编辑 没写编辑模板-->
+                            <DataTemplate>
+                                <Button Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" Content="×" Cursor="Hand" FontSize="16" Click="Delete_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock x:Name="TotalAmountTB" Background="{x:Null}" HorizontalAlignment="Right" Margin="0,0,320,0" Width="auto"/>
+        </StackPanel>
+
+
+        <ListBox x:Name="SmartLB" FocusManager.IsFocusScope="True" HorizontalAlignment="Left" IsTabStop="False" MaxHeight="200" MinWidth="88" VerticalAlignment="Top" Visibility="Hidden"
+                     PreviewKeyDown="SmartLB_PreviewKeyDown" PreviewMouseDoubleClick="SmartLB_PreviewMouseDoubleClick"/>
+    </Grid>
+</Page>

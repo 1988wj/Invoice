@@ -1,0 +1,59 @@
+﻿<Page x:Class="Test_Invoice.v.ContactManage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Test_Invoice.v"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="800"
+      Title="联系人管理">
+
+    <Grid x:Name="BodyG">
+        <ToolBar FocusManager.IsFocusScope="False" Height="58" VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFEAEAEA" Offset="0.5"/>
+                    <GradientStop Color="#FFAEAEAE" Offset="1"/>
+                    <GradientStop Color="#FFEEEEEE"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button BorderBrush="Black" Command="{Binding QuitCMD}" Content="返回" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="返回上级页面" Width="39"/>
+
+            <TextBlock Text=" 搜索:" VerticalAlignment="Center"/>
+            <TextBox Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,1" InputMethod.IsInputMethodEnabled="False" Height="26" Margin="2" Text="{Binding 搜索,UpdateSourceTrigger=PropertyChanged}" Width="128"/>
+            <Button BorderBrush="Black" Command="{Binding 插入CMD}" Content="新增" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="添加新联系人" Width="39"/>
+            <Button BorderBrush="Black" Command="{Binding 更新CMD}" Content="编辑" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="更改当前选中的联系人" Width="39"/>
+            <Button BorderBrush="Black" Command="{Binding 删除CMD}" Content="删除" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="删除当前选中的联系人" Width="39"/>
+        </ToolBar>
+
+
+        <ListView x:Name="DataLV" ItemsSource="{Binding 显示表}" Margin="0,58,0,0" MinHeight="300" SelectedItem="{Binding 选中项}" SelectionMode="Single" VerticalAlignment="Top"
+                  MouseDoubleClick="ListView_MouseDoubleClick" MouseLeftButtonUp="ListView_MouseLeftButtonUp">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="{Binding 更新CMD}" Header="编辑"/>
+                    <MenuItem Command="{Binding 删除CMD}" Header="删除"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding 显示选择}" Width="28">
+                        <GridViewColumn.Header>
+                            <CheckBox IsChecked="{Binding 全选}" ToolTip="[全选]或[全不选]"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding 名称}" Header="联系人"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding 昵称}" Header="简称"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding 显示性别}" Header="性别"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding 显示公司}" Header="公司名称"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding 地址}" Header="地址"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding 手机}" Header="手机"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding 电话}" Header="电话"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding 传真}" Header="传真"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding 显示快递}" Header="默认快递"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Comment}" Header="备注"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

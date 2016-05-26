@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Infos>
+  <Database>123456</Database>
+  <ConnectionString>Data Source=192.168.0.1;User ID=root;Password=123;CharSet=utf8;</ConnectionString>
+
+  <PaperSize Height="367" Width="950" Name="80列1/3页(送货单推荐)" />
+  <PaperSize Height="550" Width="950" Name="80列1/2页(增值税发票)" />
+  <PaperSize Height="1100" Width="950" Name="80列整页(增值税清单)" />
+  <PaperSize Height="500" Width="900" Name="一般快递单" />
+  <PaperSize Height="550" Width="850" Name="老顺丰" />
+  <PaperSize Height="550" Width="900" Name="德邦" />
+  <!--可用标签 "[日期]","[联系人]","[公司名称]","[地址]","[手机]","[电话]","[传真]",
+"[我方公司]","[我方联系人]","[我方地址]","[我方电话]","[我方传真]","[我方手机]","[当前时间]"-->
+  <ExpTemplate ID="1778c5e8-4a7a-438f-8e42-4291130541d5" Name="申通" Width="900" Height="500" HorizontalMove="-15" VerticalMove="-5">
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="300" VerticalMargin="110">大舜</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="130" VerticalMargin="110">[我方联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="130" VerticalMargin="150">[我方公司]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="130" VerticalMargin="215">[我方地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="180" VerticalMargin="253">[我方电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="500" VerticalMargin="110">[联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="500" VerticalMargin="150">[公司名称]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="500" VerticalMargin="190">[地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="550" VerticalMargin="253">[电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="183" VerticalMargin="399">[日期]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="155" VerticalMargin="285">纽扣 辅料</Label>
+  </ExpTemplate>
+  <ExpTemplate ID="ed27ecc3-3446-4dea-8b31-66a9e8cb9616" Name="顺丰新" Width="900" Height="500" HorizontalMove="-15" VerticalMove="-5">
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="335" VerticalMargin="126">[我方联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="128" VerticalMargin="126">[我方公司]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="128" VerticalMargin="155">[我方地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="128" VerticalMargin="185">[我方电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="335" VerticalMargin="210">[联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="128" VerticalMargin="210">[公司名称]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="128" VerticalMargin="240">[地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="128" VerticalMargin="296">[电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="110" VerticalMargin="430">[日期]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="80" VerticalMargin="355">纽扣 辅料</Label>
+  </ExpTemplate>
+  <ExpTemplate ID="9d6c7a62-0192-4331-bc5c-0dc6370841da" Name="圆通" Width="900" Height="500" HorizontalMove="-15" VerticalMove="-5">
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="286" VerticalMargin="110">大舜</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="120" VerticalMargin="110">[我方联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="120" VerticalMargin="130">[我方公司]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="120" VerticalMargin="170">[我方地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="160" VerticalMargin="230">[我方电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="475" VerticalMargin="110">[联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="475" VerticalMargin="130">[公司名称]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="475" VerticalMargin="170">[地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="525" VerticalMargin="230">[电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="320" VerticalMargin="395">[日期]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="120" VerticalMargin="290">纽扣 辅料</Label>
+  </ExpTemplate>
+  <ExpTemplate ID="71ecd98b-2caf-447f-b861-c06684f42521" Name="顺丰" Width="850" Height="550" HorizontalMove="-15" VerticalMove="-5">
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="106" VerticalMargin="140">[我方公司]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="106" VerticalMargin="171">[我方地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="300" VerticalMargin="140">[我方联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="180" VerticalMargin="230">[我方电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="300" VerticalMargin="300">[联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="106" VerticalMargin="300">[公司名称]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="106" VerticalMargin="330">[地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="180" VerticalMargin="385">[电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="588" VerticalMargin="345">[日期]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="68" VerticalMargin="456">纽扣 辅料</Label>
+  </ExpTemplate>
+  <ExpTemplate ID="df22ee62-d6b3-474d-b017-1449c53663d6" Name="顺丰贴纸" Width="900" Height="500" HorizontalMove="-15" VerticalMove="-5">
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="330" VerticalMargin="136">[我方联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="110" VerticalMargin="136">[我方公司]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="110" VerticalMargin="158">[我方电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="110" VerticalMargin="182">[我方地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="330" VerticalMargin="275">[联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="110" VerticalMargin="275">[公司名称]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="110" VerticalMargin="300">[电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="110" VerticalMargin="330">[地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="500" VerticalMargin="410">[日期]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="110" VerticalMargin="398">纽扣 辅料</Label>
+  </ExpTemplate>
+  <ExpTemplate ID="ec354b97-f847-4646-b6fe-acfd9d787b49" Name="德邦" Width="900" Height="550" HorizontalMove="-15" VerticalMove="-5">
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="125" VerticalMargin="120">[我方公司]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="125" VerticalMargin="150">[我方联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="125" VerticalMargin="175">[我方地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="280" VerticalMargin="150">[我方电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="125" VerticalMargin="245">[公司名称]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="125" VerticalMargin="280">[联系人]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="125" VerticalMargin="310">[地址]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="280" VerticalMargin="280">[电话]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="12" HorizontalMargin="630" VerticalMargin="350">[日期]</Label>
+    <Label Absolute="true" FontFamily="宋体" FontSize="16" HorizontalMargin="125" VerticalMargin="420">纽扣 辅料</Label>
+  </ExpTemplate>
+
+
+  <InvoiceTemplate Name="赊欠" PaperName="80列1/3页(送货单推荐)" HorizontalMargin="25" HorizontalMove="-15" VerticalMargin="2" VerticalMove="0">
+    <Table FontSize="15" FontFamily="宋体" RowNumber="2">
+      <Column Binding="编号" Width="25" Hesder="款号" Horizontal="Center" />
+      <Column Binding="名称" Width="50" Hesder="产品名称" Horizontal="Center" />
+      <Column Binding="规格" Width="15" Hesder="规格" Horizontal="Center" />
+      <Column Binding="颜色" Width="15" Hesder="颜色" Horizontal="Center" />
+      <Column Binding="数量" Width="20" Hesder="数量" Horizontal="Center" />
+      <Column Binding="单位" Width="10" Hesder="单位" Horizontal="Center" />
+      <Column Binding="单价" Width="15" Hesder="单价" Horizontal="Right" />
+      <Column Binding="金额" Width="20" Hesder="金额" Horizontal="Right" />
+      <Column Binding="备注" Width="30" Hesder="备注" Horizontal="Center" />
+    </Table>
+    <Row Number="0" Height="50" />
+    <Row Number="1" Height="32" />
+    <Row Number="2" Height="0" />
+    <Row Number="3" Height="28" />
+    <Row Number="4" Height="30" />
+    <!--可用标签  "[页码]","[总金额]","[公司名称]","[赊欠金额]","[联系人]","[备注]","[打印日期]"
+"[我方公司]","[我方联系人]","[我方地址]","[我方电话]","[我方传真]","[我方手机]","[当前时间]"-->
+    <Label Absolute="false" FontFamily="宋体" FontSize="22" Horizontal="Center" HorizontalMargin="0" Vertical="Bottom" VerticalMargin="0" RowNumber="0">[我方公司] 送货单</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Right" HorizontalMargin="0" Vertical="Bottom" VerticalMargin="0" RowNumber="0">[页码]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Left" HorizontalMargin="0" Vertical="Center" VerticalMargin="0" RowNumber="1">收货单位:[公司名称]　　收货人:[联系人]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Right" HorizontalMargin="0" Vertical="Center" VerticalMargin="0" RowNumber="1">日期:[打印日期]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Left" HorizontalMargin="0" Vertical="Center" VerticalMargin="0" RowNumber="3">备注:[备注]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Right" HorizontalMargin="60" Vertical="Center" VerticalMargin="0" RowNumber="3">总计:[总金额]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Left" HorizontalMargin="10" Vertical="Top" VerticalMargin="0" RowNumber="4">收货人签字:</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Right" HorizontalMargin="150" Vertical="Top" VerticalMargin="0" RowNumber="4">截至[当前时间]累计赊欠:[赊欠金额]元</Label>
+  </InvoiceTemplate>
+
+  <InvoiceTemplate Name="现金" PaperName="80列1/3页(送货单推荐)" HorizontalMargin="25" HorizontalMove="-15" VerticalMargin="2" VerticalMove="0">
+    <Table FontSize="15" FontFamily="宋体" RowNumber="2">
+      <Column Binding="编号" Width="25" Hesder="款号" Horizontal="Center" />
+      <Column Binding="名称" Width="50" Hesder="产品名称" Horizontal="Center" />
+      <Column Binding="规格" Width="15" Hesder="规格" Horizontal="Center" />
+      <Column Binding="颜色" Width="15" Hesder="颜色" Horizontal="Center" />
+      <Column Binding="数量" Width="20" Hesder="数量" Horizontal="Center" />
+      <Column Binding="单位" Width="10" Hesder="单位" Horizontal="Center" />
+      <Column Binding="单价" Width="15" Hesder="单价" Horizontal="Right" />
+      <Column Binding="金额" Width="20" Hesder="金额" Horizontal="Right" />
+      <Column Binding="备注" Width="30" Hesder="备注" Horizontal="Center" />
+    </Table>
+    <Row Number="0" Height="50" />
+    <Row Number="1" Height="32" />
+    <Row Number="2" Height="0" />
+    <Row Number="3" Height="28" />
+    <Row Number="4" Height="30" />
+    <Row Number="5" Height="30" />
+    <!--可用标签  "[页码]","[总金额]","[公司名称]","[赊欠金额]","[联系人]","[备注]","[打印日期]"
+"[我方公司]","[我方联系人]","[我方地址]","[我方电话]","[我方传真]","[我方手机]","[当前时间]"-->
+    <Label Absolute="false" FontFamily="宋体" FontSize="22" Horizontal="Center" HorizontalMargin="0" Vertical="Bottom" VerticalMargin="0" RowNumber="0">[我方公司] 现金送货单</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Right" HorizontalMargin="0" Vertical="Bottom" VerticalMargin="0" RowNumber="0">[页码]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Left" HorizontalMargin="0" Vertical="Center" VerticalMargin="0" RowNumber="1">收货单位:[公司名称]　　收货人:[联系人]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Right" HorizontalMargin="0" Vertical="Center" VerticalMargin="0" RowNumber="1">日期:[打印日期]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Left" HorizontalMargin="0" Vertical="Center" VerticalMargin="0" RowNumber="3">备注:[备注]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Right" HorizontalMargin="60" Vertical="Center" VerticalMargin="0" RowNumber="3">已收现金:[总金额]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Left" HorizontalMargin="10" Vertical="Top" VerticalMargin="0" RowNumber="4">收货人签字:</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Right" HorizontalMargin="150" Vertical="Top" VerticalMargin="0" RowNumber="4">收款人签字:[我方联系人]</Label>
+    <Label Absolute="false" FontFamily="宋体" FontSize="15" Horizontal="Left" HorizontalMargin="10" Vertical="Top" VerticalMargin="0" RowNumber="5">地址:[我方地址],电话:[我方电话],传真:[我方传真],手机:[我方手机]</Label>
+  </InvoiceTemplate>
+</Infos>

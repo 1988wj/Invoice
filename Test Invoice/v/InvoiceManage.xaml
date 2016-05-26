@@ -1,0 +1,101 @@
+﻿<Page x:Class="Test_Invoice.v.InvoiceManage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Test_Invoice.v"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="800"
+      Title="发货单管理">
+
+    <Grid x:Name="BodyG">
+        <ToolBar FocusManager.IsFocusScope="False" Height="96" VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFEAEAEA" Offset="0.5"/>
+                    <GradientStop Color="#FFAEAEAE" Offset="1"/>
+                    <GradientStop Color="#FFEEEEEE"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button BorderBrush="Black" Command="{Binding QuitCMD}" Content="返回" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="返回上级页面" Width="39"/>
+
+            <TextBlock Text=" 公司:" VerticalAlignment="Center"/>
+            <TextBox Background="{x:Null}" BorderBrush="Black" BorderThickness="0,0,0,1" InputMethod.IsInputMethodEnabled="False" MinWidth="260" Text="{Binding 公司名称,UpdateSourceTrigger=PropertyChanged}"
+                     GotFocus="comNameTB_GotFocus" LostFocus="SmartTB_LostFocusNotUpdate" TextChanged="SmartTB_TextChanged" PreviewKeyDown="SmartTB_PreviewKeyDown"/>
+            <StackPanel VerticalAlignment="Center">
+                <RadioButton GroupName="a" IsChecked="{Binding 未打印}" Margin="8" Click="RadioButton_Click">未打印</RadioButton>
+                <RadioButton x:Name="StatementRB" GroupName="a" IsChecked="{Binding 已打印}" Margin="8" Click="RadioButton_Click">已打印</RadioButton>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <RadioButton GroupName="a" IsChecked="{Binding 已作废}" Margin="8" Click="RadioButton_Click">已作废</RadioButton>
+                <RadioButton GroupName="a" IsChecked="{Binding 已对账}" Margin="8" Click="RadioButton_Click">已对账</RadioButton>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+
+                <CheckBox IsChecked="{Binding 日期筛选}" Margin="30,2" Click="CheckBox_Click">日期筛选</CheckBox>
+                <StackPanel x:Name="DPStart" Margin="5,2" Orientation="Horizontal" Visibility="Collapsed">
+                    <TextBlock Margin="2" Text="从:"/>
+                    <DatePicker BorderThickness="0" Width="160" SelectedDate="{Binding 开始日期}"/>
+                </StackPanel>
+                <StackPanel x:Name="DPEnd" Margin="5,2" Orientation="Horizontal" Visibility="Collapsed">
+                    <TextBlock Margin="2" Text="到:"/>
+                    <DatePicker BorderThickness="0" Width="160" SelectedDate="{Binding 结束日期}" />
+                </StackPanel>
+
+            </StackPanel>
+            <Button x:Name="StatementB" BorderBrush="Black" Command="{Binding 对账CMD}" Content="对账" Cursor="Hand" FontWeight="Bold" Height="39" Margin="18,0" ToolTip="生成对账单" Width="39"/>
+        </ToolBar>
+        <StackPanel Margin="0,95,0,0">
+
+            <ListView ItemsSource="{Binding 显示表}" MaxHeight="350" MinHeight="150" SelectedItem="{Binding 选中项}">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding 更新CMD}" Header="编辑"/>
+                        <MenuItem Command="{Binding 删除CMD}" Header="作废" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn  Width="30">
+                            <GridViewColumn.Header>
+                                <CheckBox IsChecked="{Binding 全选}" ToolTip="全选"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding 选择}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="日期" DisplayMemberBinding="{Binding 日期}"/>
+                        <GridViewColumn Header="公司名称" DisplayMemberBinding="{Binding 公司名称}"/>
+                        <GridViewColumn Header="联系人" DisplayMemberBinding="{Binding 联系人}"/>
+                        <GridViewColumn Header="总金额" DisplayMemberBinding="{Binding 金额}"/>
+                        <GridViewColumn Header="总页码" DisplayMemberBinding="{Binding 总页码}"/>
+                        <GridViewColumn Header="分页码" DisplayMemberBinding="{Binding 分页码}"/>
+                        <GridViewColumn Header="说明" DisplayMemberBinding="{Binding 说明}"/>
+                        <GridViewColumn Header="备注" DisplayMemberBinding="{Binding Comment}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <ListView BorderBrush="{x:Null}" ItemsSource="{Binding 清单表}" MaxHeight="350" Foreground="Black" FontSize="12">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="编号" DisplayMemberBinding="{Binding 编号}" Width="150"/>
+                        <GridViewColumn Header="名称" DisplayMemberBinding="{Binding 名称}" Width="200"/>
+                        <GridViewColumn Header="规格" DisplayMemberBinding="{Binding 规格}" Width="100"/>
+                        <GridViewColumn Header="颜色" DisplayMemberBinding="{Binding 颜色}" Width="100"/>
+                        <GridViewColumn Header="数量" DisplayMemberBinding="{Binding 显示数量}" Width="100"/>
+                        <GridViewColumn Header="单位" DisplayMemberBinding="{Binding 单位}" Width="50"/>
+                        <GridViewColumn Header="单价" DisplayMemberBinding="{Binding 显示单价}" Width="100"/>
+                        <GridViewColumn Header="金额" DisplayMemberBinding="{Binding 显示金额}" Width="100"/>
+                        <GridViewColumn Header="备注" DisplayMemberBinding="{Binding 备注}" Width="100"/>
+                        <GridViewColumn Header="不打印信息" DisplayMemberBinding="{Binding Comment}" Width="120"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <ListBox x:Name="SmartLB" FocusManager.IsFocusScope="True" HorizontalAlignment="Left" IsTabStop="False" MaxHeight="200" MinWidth="88" VerticalAlignment="Top" Visibility="Hidden"
+                     PreviewKeyDown="SmartLB_PreviewKeyDown" PreviewMouseDoubleClick="SmartLB_PreviewMouseDoubleClick"/>
+    </Grid>
+</Page>

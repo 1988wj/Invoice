@@ -1,0 +1,437 @@
+﻿CREATE TABLE `Binary`(
+	`ID`		char(36)	NOT NULL,
+	`用户ID`	char(36)	NOT NULL,
+	`数据`		longblob	NOT NULL,
+	`Comment`	varchar(128)	NULL,
+	`CreateTime`	datetime	NOT NULL,
+	`UpdateTime`	timestamp	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ID`)
+) DEFAULT CHARSET=utf8 COMMENT='二进制(图片)数据表';
+
+
+CREATE TABLE `Company` (
+	`ID`		char(36)	NOT NULL,
+	`用户ID`	char(36)	NOT NULL,
+	`图片ID`	char(36)	NULL,
+	`名称`		varchar(64)	NOT NULL,
+	`拼音`		varchar(256)	NOT NULL,
+	`发货单分页码`	int		NOT NULL DEFAULT '0',
+	`累计金额`	decimal(16,5)	NOT NULL DEFAULT '0',
+	`赊欠金额`	decimal(16,5)	NOT NULL DEFAULT '0',
+	`赊欠`		bit(1)		NOT NULL DEFAULT b'0',
+	`税号`		varchar(32)	NULL,
+	`地址`		varchar(128)	NULL,
+	`电话`		varchar(32)	NULL,
+	`银行`		varchar(64)	NULL,
+	`账号`		varchar(32)	NULL,
+	`Comment`	varchar(128)	NULL,
+	`CreateTime`	datetime	NOT NULL,
+	`UpdateTime`	timestamp	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ID`)
+) DEFAULT CHARSET=utf8 COMMENT='公司信息表';
+
+
+CREATE TABLE `Contact`(
+	`ID`		char(36)	NOT NULL,
+	`用户ID`	char(36)	NOT NULL,
+	`公司ID`	char(36)	NOT NULL,
+	`图片ID`	char(36)	NULL,
+	`快递ID`	char(36)	NULL,
+	`名称`		varchar(64)	NOT NULL,
+	`拼音`		varchar(256)	NOT NULL,
+	`昵称`		varchar(64)	NULL,
+	`地址`		varchar(128)	NULL,
+	`手机`		varchar(32)	NULL,
+	`电话`		varchar(32)	NULL,
+	`传真`		varchar(32)	NULL,
+	`性别`		bit(1)		NULL,
+	`Comment`	varchar(128)	NULL,
+	`CreateTime`	datetime	NOT NULL,
+	`UpdateTime`	timestamp	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ID`)
+) DEFAULT CHARSET=utf8 COMMENT='联系人信息表';
+
+
+CREATE TABLE `Invoice`(
+	`ID`		char(36)	NOT NULL,
+	`用户ID`	char(36)	NOT NULL,
+	`公司ID`	char(36)	NOT NULL,
+	`对账单ID`	char(36)	NULL,
+	`联系人`	varchar(64)	NULL,
+	`金额`		decimal(16, 5)	NOT NULL DEFAULT '0',
+	`总页码`	int		NOT NULL DEFAULT '0',
+	`分页码`	int		NOT NULL DEFAULT '0',
+	`打印`		bit(1)		NOT NULL DEFAULT b'0',
+	`对账`		bit(1)		NOT NULL DEFAULT b'0',
+	`付款`		bit(1)		NOT NULL DEFAULT b'0',
+	`作废`		bit(1)		NOT NULL DEFAULT b'0',
+	`打印时间`	datetime	NULL,
+	`Comment`	varchar(128)	NULL,
+	`CreateTime`	datetime	NOT NULL,
+	`UpdateTime`	timestamp	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ID`)
+) DEFAULT CHARSET=utf8 COMMENT='发货单信息表';
+
+
+CREATE TABLE `InvoiceList`(
+	`ID`		char(36)	NOT NULL,
+	`发货单ID`	char(36)	NOT NULL,
+	`名称`		varchar(64)	NOT NULL,
+	`单位`		varchar(16)	NOT NULL,
+	`数量`		decimal(16, 5)	NOT NULL DEFAULT '0',
+	`单价`		decimal(16, 5)	NOT NULL DEFAULT '0',
+	`编号`		varchar(32)	NULL,
+	`规格`		varchar(32)	NULL,
+	`颜色`		varchar(32)	NULL,
+	`备注`		varchar(32)	NULL,
+	`Comment`	varchar(128)	NULL,
+	`CreateTime`	datetime	NOT NULL,
+	`UpdateTime`	timestamp	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ID`)
+) DEFAULT CHARSET=utf8 COMMENT='发货清单信息表';
+
+
+CREATE TABLE `Product`(
+	`ID`		char(36)	NOT NULL,
+	`用户ID`	char(36)	NOT NULL,
+	`公司ID`	char(36)	NOT NULL,
+	`图片ID`	char(36)	NULL,
+	`编号`		varchar(32)	NOT NULL,
+	`名称`		varchar(64)	NOT NULL,
+	`产量`		float		NOT NULL DEFAULT '0',
+	`库存`		float		NOT NULL DEFAULT '0',
+	`单位`		varchar(16)	NULL,
+	`单价`		decimal(16, 5)	NULL,
+	`开发费`	decimal(16, 5)	NULL,
+	`规格`		varchar(32)	NULL,
+	`颜色`		varchar(32)	NULL,
+	`设计师`	varchar(32)	NULL,
+	`Comment`	varchar(128)	NULL,
+	`CreateTime`	datetime	NOT NULL,
+	`UpdateTime`	timestamp	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ID`)
+) DEFAULT CHARSET=utf8 COMMENT='产品信息表';
+
+
+CREATE TABLE `Statement`(
+	`ID`		char(36)	NOT NULL,
+	`用户ID`	char(36)	NOT NULL,
+	`公司ID`	char(36)	NOT NULL,
+	`标题`		varchar(64)	NOT NULL,
+	`起始日期`	datetime	NOT NULL,
+	`截止日期`	datetime	NOT NULL,
+	`Comment`	varchar(128)	NULL,
+	`CreateTime`	datetime	NOT NULL,
+	`UpdateTime`	timestamp	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ID`)
+) DEFAULT CHARSET=utf8 COMMENT='对账单信息表';
+
+
+CREATE TABLE `User`(
+	`ID`		char(36)	NOT NULL,
+	`公司名称`	varchar(64)	NOT NULL,
+	`联系人`	varchar(64)	NOT NULL,
+	`地址`		varchar(128)	NOT NULL,
+	`电话`		varchar(32)	NOT NULL,
+	`传真`		varchar(32)	NOT NULL,
+	`手机`		varchar(32)	NOT NULL,
+	`版本`		varchar(32)	NOT NULL,
+	`默认赊欠`	bit(1)		NOT NULL DEFAULT b'0',
+	`发货单总页码`	int		NOT NULL DEFAULT '0',
+	`对账单总页码`	int		NOT NULL DEFAULT '0',
+	`Comment`	varchar(128)	NULL,
+	`CreateTime`	datetime	NOT NULL,
+	`UpdateTime`	timestamp	NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`ID`)
+) DEFAULT CHARSET=utf8 COMMENT='用户(操作员)信息表';
+
+
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE `InsertInvoice`(
+	IN `pID`	char(36),
+	IN `p用户ID`	char(36),
+	IN `p公司ID`	char(36),
+	IN `p联系人`	varchar(64),
+	IN `p金额`	decimal(16, 5),
+	IN `pComment`	varchar(128))
+BEGIN
+
+declare `p总页码` int;
+declare `p分页码` int;
+
+SET `p总页码` = (SELECT `发货单总页码` FROM `User` WHERE `ID` = `p用户ID`) + 1;
+SET `p分页码` = (SELECT `发货单分页码` FROM `Company` WHERE `ID` = `p公司ID`) + 1;
+
+INSERT INTO `Invoice`
+(`ID`,`用户ID`,`公司ID`,`联系人`,`金额`,`总页码`,`分页码`,`打印时间`,`Comment`,`CreateTime`)
+VALUES
+(`pID`,`p用户ID`,`p公司ID`,`p联系人`,`p金额`,`p总页码`,`p分页码`,NOW(),
+IF(`pComment`='',NULL,`pComment`),NOW());
+
+UPDATE `User` SET `发货单总页码` = `p总页码` WHERE `ID` = `p用户ID`;
+UPDATE `Company` SET `发货单分页码` = `p分页码` WHERE `ID` = `p公司ID`;
+END;
+
+
+CREATE PROCEDURE `InsertInvoiceList`(
+	IN `pID`	char(36),
+	IN `p发货单ID`	char(36),
+	IN `p名称`	varchar(64),
+	IN `p单位`	varchar(16),
+	IN `p数量`	decimal(16, 5),
+	IN `p单价`	decimal(16, 5),
+	IN `p编号`	varchar(32),
+	IN `p规格`	varchar(32),
+	IN `p颜色`	varchar(32),
+	IN `p备注`	varchar(32),
+	IN `pComment`	varchar(128)
+)
+BEGIN
+
+INSERT INTO `InvoiceList`
+(`ID`,`发货单ID`,`名称`,`单位`,`数量`,`单价`,`编号`,`规格`,`颜色`,`备注`,`Comment`,`CreateTime`)
+VALUES
+(`pID`,`p发货单ID`,`p名称`,`p单位`,`p数量`,`p单价`,
+IF(`p编号`='',NULL,`p编号`),
+IF(`p规格`='',NULL,`p规格`),
+IF(`p颜色`='',NULL,`p颜色`),
+IF(`p备注`='',NULL,`p备注`),
+IF(`pComment`='',NULL,`pComment`),NOW());
+
+END;
+
+
+CREATE PROCEDURE `InsertStatement`(
+	IN `pID`	char(36),
+	IN `p用户ID`	char(36),
+	IN `p公司ID`	char(36),
+	IN `p标题`	varchar(64),
+	IN `p起始日期`	datetime,
+	IN `p截止日期`	datetime,
+	IN `pComment`	varchar(128))
+BEGIN
+
+INSERT INTO `Statement`
+(`ID`,`用户ID`,`公司ID`,`标题`,`起始日期`,`截止日期`,`Comment`,`CreateTime`)
+VALUES
+(`pID`,`p用户ID`,`p公司ID`,`p标题`,`p起始日期`,`p截止日期`,`pComment`,NOW());
+
+END;
+
+
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE `PrintInvoice`(IN `pID` char(36),IN `p付款` bit(1))
+BEGIN
+DECLARE `p公司ID`	char(36);
+DECLARE `p金额`		decimal(16, 5);
+DECLARE `p打印`		bit(1);
+
+SELECT `公司ID`,`金额`,`打印` INTO `p公司ID`,`p金额`,`p打印` FROM `Invoice` WHERE `ID` =`pID`;
+
+IF `p打印` = b'0' AND `p付款` = b'0'
+THEN
+UPDATE `Invoice`
+SET `打印` = b'1', `打印时间` = NOW()
+WHERE `ID` = `pID`;
+
+UPDATE `Company`
+SET `累计金额` = `累计金额` + `p金额`, `赊欠金额` = `赊欠金额` + `p金额`
+WHERE `ID` = `p公司ID`;
+END IF;
+
+IF `p打印` = b'0' AND `p付款` = b'1'
+THEN
+UPDATE `Invoice`
+SET `对账单ID` = '00000000-0000-0000-0000-000000000000', `打印` = b'1',  `对账` = b'1', `付款` = b'1',`打印时间` = NOW()
+WHERE `ID` = `pID`;
+
+UPDATE `Company`
+SET `累计金额` = `累计金额` + `p金额`
+WHERE `ID` = `p公司ID`;
+END IF;
+
+SELECT `联系人`,`金额`,`总页码`,`分页码`,`打印时间`,`Invoice`.`Comment`,`名称`,`赊欠金额`
+FROM `Invoice`,`Company` WHERE `Invoice`.`公司ID` = `Company`.`ID` AND `Invoice`.`ID` = `pID`;
+
+END;
+
+
+
+
+
+
+CREATE PROCEDURE `SaveCompany`(
+	IN `pID`	char(36),
+	IN `p用户ID`	char(36),
+	IN `p图片ID`	char(36),
+	IN `p名称`	varchar(64),
+	IN `p拼音`	varchar(256),
+	IN `p发货单分页码`	int,
+	IN `p累计金额`	decimal(16,5),
+	IN `p赊欠金额`	decimal(16,5),
+	IN `p赊欠`	bit(1),
+	IN `p税号`	varchar(32),
+	IN `p地址`	varchar(128),
+	IN `p电话`	varchar(32),
+	IN `p银行`	varchar(64),
+	IN `p账号`	varchar(32),
+	IN `pComment`	varchar(128),
+	IN `pIsNewInfo`	bit(1))
+BEGIN
+
+IF `pIsNewInfo` = b'1'
+THEN
+
+INSERT INTO `Company`
+(`ID`,`用户ID`,`图片ID`,`名称`,`拼音`,`赊欠`,`税号`,`地址`,`电话`,`银行`,`账号`,`Comment`,`CreateTime`)
+VALUES
+(`pID`,`p用户ID`,
+IF(`p图片ID`='',NULL,`p图片ID`),
+`p名称`,`p拼音`,`p赊欠`,
+IF(`p税号`='',NULL,`p税号`),
+IF(`p地址`='',NULL,`p地址`),
+IF(`p电话`='',NULL,`p电话`),
+IF(`p银行`='',NULL,`p银行`),
+IF(`p账号`='',NULL,`p账号`),
+IF(`pComment`='',NULL,`pComment`),NOW());
+
+ELSE
+
+UPDATE `Company`
+SET
+`用户ID` = `p用户ID`,
+`图片ID` = IF(`p图片ID`='',NULL,`p图片ID`),
+`名称` = `p名称`,
+`拼音` = `p拼音`,
+`发货单分页码` = `p发货单分页码`,
+`累计金额` = `p累计金额`,
+`赊欠金额` = `p赊欠金额`,
+`赊欠` = `p赊欠`,
+`税号` = IF(`p税号`='',NULL,`p税号`),
+`地址` = IF(`p地址`='',NULL,`p地址`),
+`电话` = IF(`p电话`='',NULL,`p电话`),
+`银行` = IF(`p银行`='',NULL,`p银行`),
+`账号` = IF(`p账号`='',NULL,`p账号`),
+`Comment` = IF(`pComment`='',NULL,`pComment`)
+WHERE `ID` = `pID`;
+
+END IF;
+
+END;
+
+
+
+
+CREATE PROCEDURE `SaveContact`(
+	IN `pID`	char(36),
+	IN `p用户ID`	char(36),
+	IN `p公司ID`	char(36),
+	IN `p图片ID`	char(36),
+	IN `p名称`	varchar(64),
+	IN `p拼音`	varchar(256),
+	IN `p昵称`	varchar(64),
+	IN `p地址`	varchar(128),
+	IN `p手机`	varchar(32),
+	IN `p电话`	varchar(32),
+	IN `p传真`	varchar(32),
+	IN `p性别`	bit(1),
+	IN `pComment`	varchar(128),
+	IN `pIsNewInfo`	bit(1))
+BEGIN
+
+IF `pIsNewInfo` = b'1'
+THEN
+
+INSERT INTO `Contact` 
+(`ID`,`用户ID`,`公司ID`,`图片ID`,`名称`,`拼音`,`昵称`,`地址`,`手机`,`电话`,`传真`,`性别`,`Comment`,`CreateTime`)
+VALUES
+(`pID`,`p用户ID`,`p公司ID`,
+IF(`p图片ID`='',NULL,`p图片ID`),
+`p名称`,`p拼音`,
+IF(`p昵称`='',NULL,`p昵称`),
+IF(`p地址`='',NULL,`p地址`),
+IF(`p手机`='',NULL,`p手机`),
+IF(`p电话`='',NULL,`p电话`),
+IF(`p传真`='',NULL,`p传真`),
+`p性别`,
+IF(`pComment`='',NULL,`pComment`),NOW());
+
+ELSE
+
+UPDATE `Contact`
+SET
+`用户ID` = `p用户ID`,
+`公司ID` = `p公司ID`,
+`图片ID` = IF(`p图片ID`='',NULL,`p图片ID`),
+`名称` = `p名称`,
+`拼音` = `p拼音`,
+`昵称` = IF(`p昵称`='',NULL,`p昵称`),
+`地址` = IF(`p地址`='',NULL,`p地址`),
+`手机` = IF(`p手机`='',NULL,`p手机`),
+`电话` = IF(`p电话`='',NULL,`p电话`),
+`传真` = IF(`p传真`='',NULL,`p传真`),
+`性别` = `p性别`,
+`Comment` = IF(`pComment`='',NULL,`pComment`)
+WHERE `ID` = `pID`;
+
+END IF;
+
+END;
+
+
+
+
+
+CREATE PROCEDURE `UpdateInvoice`(
+	IN `pID`	char(36),
+	IN `p用户ID`	char(36),
+	IN `p公司ID`	char(36),
+	IN `p联系人`	varchar(64),
+	IN `p金额`	decimal(16, 5),
+	IN `pComment`	varchar(128))
+BEGIN
+
+UPDATE `Invoice`
+SET
+`用户ID` = `p用户ID`,
+`公司ID` = `p公司ID`,
+`联系人` = `p联系人`,
+`金额` = `p金额`,
+`打印时间` = NOW(),
+`Comment` = IF(`pComment`='',NULL,`pComment`)
+WHERE `ID` = `pID`;
+
+END;
+
+
+
+
+INSERT INTO `User`
+	(`ID`,`公司名称`,`联系人`,`地址`,`电话`,`传真`,`手机`,`版本`,`CreateTime`)
+
+	VALUES
+
+	("00000000-0000-0000-0000-000000000000","上海XXX贸易商行","王'R","上海市大舜大利路116号","021-88888888","021-66666666","13666777777","V1.0.0.0",NOW());
+
+INSERT INTO `Company`
+	(`ID`,`用户ID`,`名称`,`拼音`,`赊欠`,`CreateTime`)
+	VALUES
+
+	("00000000-0000-0000-0000-000000000000","00000000-0000-0000-0000-000000000000","个人","gr geren",1,NOW());
+

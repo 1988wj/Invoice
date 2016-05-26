@@ -1,0 +1,7 @@
+﻿<NavigationWindow
+    x:Class="Test_Invoice.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Source="pIndex.xaml"
+    WindowStartupLocation="CenterScreen"
+    Background="LightBlue" Closed="NavigationWindow_Closed" FontSize="16"/>
